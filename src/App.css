@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  height: 100%;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border: solid black;
+}
+
+.column .card {
+  border: solid black;
+}
