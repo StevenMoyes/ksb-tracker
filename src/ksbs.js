@@ -158,3 +158,5 @@ const ksbs = {
     },
   ]
 }
+
+export default ksbs;
