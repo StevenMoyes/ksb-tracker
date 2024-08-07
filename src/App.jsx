@@ -1,23 +1,32 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { ksbs } from "./ksbs.js";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column.jsx";
 
 function App() {
-  const [taskStates, setTaskStates] = useState([
-    "todo",
-    "partiallyMet",
-    "done",
-  ]);
+  // eslint-disable-next-line no-unused-vars
+  const [taskStates] = useState(["todo", "partiallyMet", "done"]);
 
-  const initialTasks = [
-    ...ksbs["Knowledge"].map((task) => ({ ...task, status: "todo" })),
-    ...ksbs["Skills"].map((task) => ({ ...task, status: "partiallyMet" })),
-    ...ksbs["Behaviours"].map((task) => ({ ...task, status: "done" })),
-  ];
-  const [tasks, setTasks] = useState(initialTasks);
+  const loadTasksFromLocalStorage = () => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    }
+
+    return [
+      ...ksbs["Knowledge"].map((task) => ({ ...task, status: "todo" })),
+      ...ksbs["Skills"].map((task) => ({ ...task, status: "partiallyMet" })),
+      ...ksbs["Behaviours"].map((task) => ({ ...task, status: "done" })),
+    ];
+  };
+
+  const [tasks, setTasks] = useState(loadTasksFromLocalStorage);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;

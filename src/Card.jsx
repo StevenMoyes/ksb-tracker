@@ -14,7 +14,7 @@ const TaskCard = ({ task, index }) => {
           {...provided.dragHandleProps}
           onClick={() => setShowDescription(!showDescription)}
         >
-          <p>ID: {task.id}</p>
+          <p>{task.id}</p>
           {showDescription && <p>Description: {task.description}</p>}
         </div>
       )}

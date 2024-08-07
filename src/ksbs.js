@@ -1,4 +1,4 @@
-const ksbs = {
+export const ksbs = {
   'Knowledge': [
     {
       id: 'K1',

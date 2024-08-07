@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import TaskCard from "./Card";
 
@@ -6,7 +8,7 @@ const Column = ({ title, status, tasks }) => {
     <div className='column'>
       <h2>{title}</h2>
       <Droppable droppableId={status}>
-        {(provided) => {
+        {(provided) => (
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
@@ -18,8 +20,8 @@ const Column = ({ title, status, tasks }) => {
                 <TaskCard key={task.id} task={task} index={index} />
               ))}
             {provided.placeholder}
-          </div>;
-        }}
+          </div>
+        )}
       </Droppable>
     </div>
   );
